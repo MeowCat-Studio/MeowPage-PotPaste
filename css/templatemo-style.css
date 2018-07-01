@@ -47,6 +47,18 @@ p {
 	transition: all 0.5s;
 }
 
+.blue-button a {
+	padding: 14px 20px;
+	background-color: #0496DA;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-decoration: none;
+	transition: all 0.5s;
+}
+
 .white-button a {
 	padding: 14px 20px;
 	background-color: #fff;
@@ -196,6 +208,38 @@ p {
 	padding-left: 5px;
 }
 
+.best-offer-left-content1 {
+	min-height: 550px;
+	height: 550px;
+	padding-top: 175px;
+	padding-bottom: 175px;
+	text-align: center;
+	background-image: url(../img/best-offer-bg1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.best-offer-left-content1 .icon {
+	text-align: center;
+	margin: 0 auto;
+	width: 140px;
+	height: 140px;
+	line-height: 140px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	border-radius: 50%;
+}
+
+.best-offer-left-content1 h4 {
+	margin-top: 33px;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #fff;
+	font-weight: 700;
+}
+
+
 .best-offer-left-content {
 	min-height: 550px;
 	height: 550px;
@@ -271,7 +315,54 @@ p {
 	margin-top: 45px;
 }
 
+.best-offer-right-content1 {
+	background-color: #eee;
+	padding: 80px 40px;
+	min-height: 550px;
+	height: 550px;
+}
 
+.best-offer-right-content1 h2 {
+	margin-top: 0px;
+	font-size: 32px;
+	font-weight: 300;
+	color: #121212;
+	line-height: 36px;
+}
+
+.best-offer-right-content1 em {
+	font-style: normal;
+	color: #0496DA;
+	font-weight: 700;
+}
+
+.best-offer-right-content1 p {
+	margin: 18px 0px;
+}
+
+.best-offer-right-content1 a {
+	color: #0496DA;
+}
+
+.best-offer-right-content1 ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.best-offer-right-content1 ul li {
+	display: block;
+	font-size: 13px;
+	font-style: italic;
+	color: #7a7a7a;
+	font-weight: 300;
+	margin-bottom: 10px;
+}
+
+
+.best-offer-right-content1 .blue-button {
+	margin-top: 45px;
+}
 
 
 
