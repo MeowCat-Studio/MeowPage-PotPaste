@@ -1,2 +1,2 @@
-# pvhu.meowcat.org
+# pvhu.org
 Pvhu's personal website.
