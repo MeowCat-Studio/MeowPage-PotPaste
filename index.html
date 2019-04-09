@@ -57,7 +57,7 @@ var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
                                 
 //var day=parseInt((lasttime-time)/(1000*60*60*24));
                                 var h=parseInt(((lasttime-time)/(1000*60*60))%24);
-                                document.getElementById("ti").innerHTML="距离2020届高考还有<br>"+days+"        天"+hours+"小时"+minutes+"分"+seconds+"秒";
+                                document.getElementById("ti").innerHTML="距离2020届高考还有<br>\t"+days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
                                 }
                                 setInterval(update,1000);
                             </script>
