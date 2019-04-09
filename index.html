@@ -35,7 +35,7 @@
                             <h4 style="color: aliceblue; font-family: 黑体">高考加油</h4>
                             
                             <div class="line-dec"></div>
-                            <h2 id="ti" style="color: aliceblue;font-family: 黑体">距离高考还有</h1>
+                            <h1 id="ti" style="color: aliceblue;font-family: 黑体">距离高考还有</h1>
                             <script>
                                 function update(){
                             var time=Date.parse(new Date());
@@ -57,7 +57,7 @@ var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
                                 
 //var day=parseInt((lasttime-time)/(1000*60*60*24));
                                 var h=parseInt(((lasttime-time)/(1000*60*60))%24);
-                                document.getElementById("ti").innerHTML="距离2020届高考还有"+days+"天"+hours+"小时"+minutes+"分"+seconds+"秒";
+                                document.getElementById("ti").innerHTML="距离2020届高考还有"+days+"天"+hours+"小时<br>"+minutes+"分"+seconds+"秒";
                                 }
                                 setInterval(update,1000);
                             </script>
