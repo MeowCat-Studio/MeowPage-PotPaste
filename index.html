@@ -1,32 +1,99 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html lang=zh>
+  <head>
+	<title>pv糊的个人网站</title>
+	<script src='loader/run_prettify.js'></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+<style>
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8
+{ list-style-type: decimal !important }
+</style>
+  </head>
+  <body>
+	
+	<div style="">
+	  <div id="menu" style="background-color:#9BDC54;overflow: scroll;width:300px;height:100%;position:fixed;left:0px;top:0px;display:none;">
+		<img id="headimg" src="img/headimg.png"/>
+		<em style="position:absolute;text-align:center;top:363px;" id="menuem">b站id:pv糊</em>
+		<div id="b1" class='menubutton' style="top:430px;"><span>主页</span></div>
+		
+	  </div>
+	  <div style="background-color:#9BDC54;width:100%;height:75px;position:fixed;left:0px;top:0px;z-index:999;">
+		<div id="side" style="position:absolute;top:5px;width:50px;z-index:1000;" >
+		<div style="position:absolute;background-color:white;width:50px;height:5px;top:10px;left:15px;"></div>
+		<div style="position:absolute;background-color:white;width:50px;height:5px;top:30px;left:15px;"></div>
+		<div style="position:absolute;background-color:white;width:50px;height:5px;top:50px;left:15px;"></div>
+		</div>
+		<div id="mytitle" style="position:absolute;color:white;left:0px;top:15px;width:100%;text-align:center;font-size:40px;">加载中……</div>
+		</div>
+		<br><br><br>
+	  
+	</div>
+	<div style="text-align:center;background-color:#ECC795;">
+	  <br><br>
+	  <img style="width:300px;margin:0 auto;" src="img/logo.png"/>
+	  <p style="font-size:28px;font-weight:bold;">加入Bedrock Realm小组，参与基岩版资源开发！
+		<br>Bedrock  Realm小组招募通告
+	  </p>
+	  
+	  <em>置顶 2019-8-15</em>
+	  <br>
+	  <a href="article-2.html"><button>去围观</button></a>
+	  
+	</div>
+	<br><br><br>
+	<div style="text-align:center;background-color:#ECC795;">
+	  <br><br>
+	  <img style="height:300px;margin:0 auto;" src="img/hp.png"/>
+	  <p style="font-size:28px;font-weight:bold;">Script Engine实战系列 1<br>生物显血add-on的制作（一）</p>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html, charset=gb2312" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>Mini SkinShop</title>
-    <style>
-    body {
-        padding: 0;
-        margin: 0;
-        position: relative;
-    }
-    #skin3D{
-    	position:fixed;
-    	top: 0;
-    	right: 0;
-    	bottom: 0;
-    	left: 0;
-    }
-    #skin3D canvas {
+	  <em>2019-8-14</em>
+	  <br>
+	  <a href="article-1.html"><button>去围观</button></a>
+	</div>
+	<br><br><br>
+	<div style="text-align:center;background-color:#ECC795;">
+	  <br><br>
+	  <img style="height:300px;margin:0 auto;" src="img/hp.png"/>
+	  <p style="font-size:28px;font-weight:bold;">【script engine】生物显血行为包(by pv糊)发布</p>
 
-    }
-    </style>
-</head>
+	  <em>2019-8-11</em>
+	  <br>
+	  <a href="article-4.html"><button>去围观</button></a>
+	</div>
+	<br><br><br>
+	<div style="text-align:center;background-color:#ECC795;">
+	  <br><br>
+	  <img style="height:300px;margin:0 auto;" src="img/directionblock.png"/>
+	  <p style="font-size:28px;font-weight:bold;">【inner core】旋转方块库v1.3.1发布</p>
 
-<body>
-    <div id="skin3D"></div>
-    <script data-main="./js/main.js" src="./js/libs/require.js"></script>
-</body>
+	  <em>2019-7-13</em>
+	  <br>
+	  <a href="article-5.html"><button>去围观</button></a>
+	</div>
+	<br><br><br>
+	<div style="text-align:center;background-color:#ECC795;">
+	  <br><br>
+	  <img style="height:300px;margin:0 auto;" src="img/coffee.png"/>
+	  <p style="font-size:28px;font-weight:bold;">【inner core】咖啡工坊v1.1.0发布</p>
 
-</html>
+	  <em>2019-6-22</em>
+	  <br>
+	  <a href="article-3.html"><button>去围观</button></a>
+	</div>
+<script>
+	$(document).ready(function(){
+  document.getElementById('mytitle').innerHTML= "pv糊的个人主页";
+  $("#side").click(function(){
+    $("#menu").slideToggle();
+  });
+  $("#b1").click(function(){
+    $("#menu").slideToggle();
+  });
+});
+</script>
+		</body>
+		</html>
+		
