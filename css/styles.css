@@ -1,0 +1,75 @@
+body
+{
+   background-color:#F9DD8C;
+}
+em
+{
+   color:blue;
+   font-size:24px;
+}
+table
+{
+  background-color:#ECC795;
+  font-size:21px;
+}
+td
+{
+  background-color:#FCDAA1;
+  font-size:21px;
+}
+textarea
+{
+  font-size:21px;
+  background-color:#FCDAA1;
+}
+pre
+{
+  font-size:21px;
+  background-color:#FCDAA1;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.menubutton
+{
+  position:absolute;background-color:#92D352;width:300px;height:60px;
+  color:white;
+  text-align:center;
+  font-size:25px;
+}
+
+.menubutton span{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+#headimg{
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+button
+{
+  position:absolute;background-color:#92D352;width:300px;height:60px;
+  color:white;
+  left: 80%;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+  text-align:center;
+  font-size:25px;
+}
+
+
