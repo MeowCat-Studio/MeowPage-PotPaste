@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+	<title>【inner core】旋转方块库v1.3.1发布-基岩版境界小组</title>
+	<script src='loader/run_prettify.js'></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+<style>
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8
+{ list-style-type: decimal !important }
+</style>
+  </head>
+  <body>
+
+	<div style="">
+	  <div id="menu" style="background-color:#9BDC54;overflow: scroll;width:300px;height:100%;position:fixed;left:0px;top:0px;display:none;">
+		<img id="headimg" src="img/headimg.png"/>
+		<em style="position:absolute;text-align:center;top:363px;" id="menuem">b站id:pv糊<br>2351579300@qq.com</em>
+		<div id="b1" class='menubutton' style="top:430px;"><a href="index.html"><span>主页</span></a></div>
+		  </div>
+	  <div style="background-color:#9BDC54;width:100%;height:75px;position:fixed;left:0px;top:0px;z-index:999;">
+		<div id="side" style="position:absolute;top:5px;width:50px;z-index:1000;" >
+		  <div style="position:absolute;background-color:white;width:50px;height:5px;top:10px;left:15px;"></div>
+		  <div style="position:absolute;background-color:white;width:50px;height:5px;top:30px;left:15px;"></div>
+		  <div style="position:absolute;background-color:white;width:50px;height:5px;top:50px;left:15px;"></div>
+		</div>
+		<div id="mytitle" style="position:absolute;color:white;left:0px;top:15px;width:100%;text-align:center;font-size:40px;">加载中……</div>
+	  </div>
+	  <br><br><br>
+	  <p style="font-weight:bold;text-align:center;font-size:40px;">旋转方块库v1.3.1发布</p>
+	  <p style="text-align:center;font-size:18px;">2019-8-15 16:51由<em>@pv糊</em>最后编辑<br>本文由<em>@pv糊</em>创建，转载和引用请注明原作者。</p>
+	  <div style="text-align:center;">
+		<img style="width:300px;margin:0 auto;" src="img/logo.png"/>
+		<p style="font-size:28px;font-weight:bold;">加入Bedrock Realm小组，参与基岩版资源开发！
+		  <br>qq群号：850104972
+		</p>
+	  </div>
+	</div>
+	<br>
+	<img style="height:350px;" src="img/hp.png"/>
+	<br><em>使用指南已经打包在下载文件里。</em><br>
+	<a href="mod/directionblocklibv1.3.1.zip"><button>下载</button></a>
+	<br>
+	<br>
+	<br>
+	<a href="article-3.html" style="font-size:24px;">下一篇文章：【script engine】生物显血行为包(by pv糊)发布</a>
+<script>
+	$(document).ready(function(){
+  document.getElementById('mytitle').innerHTML= "旋转方块库v1.3.1发布";
+  $("#side").click(function(){
+    $("#menu").slideToggle();
+  });
+  $("#b1").click(function(){
+    $("#menu").slideToggle();
+  });
+});
+</script>
+  </body>
+</html>		
