@@ -57,7 +57,7 @@ function create() {
 			start();
 			return;
 		}
-		player.body.velocity.y -= 120;
+		player.body.velocity.y -= 100;
 	},this);
 	
 	game.time.events.loop(2400,function(){
@@ -125,7 +125,7 @@ function init(){
 function start(){
 	gourney.logo.kill();
 	gourney.start = true;
-	player.body.gravity.y = 200;
+	player.body.gravity.y = 240;
 	gourney.text.kill();
 }
 /*
