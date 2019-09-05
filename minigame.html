@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=zh>
   <head>
-	<title>H5 小游戏 ----pv糊的个人的博客</title>
+	<title>H5小游戏 -----pv糊的个人博客</title>
 	<script src='loader/run_prettify.js'></script>
 	<script src="js/jquery-1.11.2.min.js"></script>
     <link href="css/styles.css" rel="stylesheet">
@@ -16,8 +16,8 @@ li.L5, li.L6, li.L7, li.L8
 	<div style="">
 	  <div id="menu" style="background-color:#9BDC54;overflow: scroll;width:300px;height:100%;position:fixed;left:0px;top:0px;display:none;">
 		<img id="headimg" src="img/headimg.png"/>
-		<em style="position:absolute;text-align:center;top:363px;" id="menuem">b站id:pv糊<br>2351579300@qq.com</em>
-		<div id="b1" class='menubutton' style="top:430px;"><a href="index.html"><span>主页</span></a></div>
+		<em style="position:absolute;text-align:center;top:363px;" id="menuem">b站id:pv糊</em>
+		<div id="b1" class='menubutton' style="top:430px;"><span>主页</span></div>
 		<div id="b1" class='menubutton' style="top:510px;"><span>小游戏</span></div>
 	  </div>
 	  <div style="background-color:#9BDC54;width:100%;height:75px;position:fixed;left:0px;top:0px;z-index:999;">
@@ -28,311 +28,25 @@ li.L5, li.L6, li.L7, li.L8
 		</div>
 		<div id="mytitle" style="position:absolute;color:white;left:0px;top:15px;width:100%;text-align:center;font-size:40px;">加载中……</div>
 		</div>
-	  <br><br><br>
-	  <p style="font-weight:bold;text-align:center;font-size:40px;">Script Engine实战系列 1<br>生物显血add-on的制作（一）</p>
-	  <p style="text-align:center;font-size:18px;">2019-8-14 22:20由<em>@pv糊</em>最后编辑<br>本文由<em>@pv糊</em>创建，转载和引用请注明原作者。<br>本文基于基岩版1.12.0.2正式版创建</p>
-	  <div style="text-align:center;">
-		<img style="width:300px;margin:0 auto;" src="img/logo.png"/>
-		<p style="font-size:28px;font-weight:bold;">加入Bedrock Realm小组，参与基岩版资源开发！
-		<br>qq群号：850104972
-		</p>
-	  </div>
-	  <p style="font-size:24px;">
-	  <br>Hello大家好，我是练习时长……咳咳，我是pv糊，mcpe的一个萌新，因为写不起什么长篇大论的开发教程，就想通过一个实例来让一些刚接触SE的开发者熟悉一下script engine和ui engine。
-		<br><br><em>阅读本文前，建议阅读：</em>
-		<br><a href="https://modpe.cn/index.php/2018/12/191/">阿特我自己的脚本引擎教程（可能与引擎最新版有出入）</a>
-		<br><em>阅读本文的同时，建议查阅：</em>
-		<br><a href="https://minecraft.gamepedia.com/">官方维基（最新）</a>
-		<br><a href="https://modpe.cn/index.php/2018/12/275/">阿特我自己的中文脚本API文档（可能与引擎最新版有出入）</a>
-		<br><br>众所周知，ui engine是mojang基于html5创建的方便开发者在游戏中创建自定义ui的引擎。你可以在html文件中写js以应答或监听ui engine的事件。
-	  这些事件可以被ui engine自己触发，也可以被你的脚本（script）触发。官方文档里有对ui engine详尽的介绍，这里不再赘述。
-	  <br><br>在正式开始之前，先提一下，与modpe不同，script engine运行的模式是
-	  </p>
-	  <p style="font-size:24px;text-align:center;font-weight:bold;">ui引擎 ↹ 客户端 ↹ 服务端</p>
-	  <p style="font-size:24px;">即服务端与客户端/ui引擎与客户端可以直接通过监听的广播通信，而ui引擎不能与服务端直接通信。这一点对于mc一个可联机游戏非常重要。
-	  服务器事件只能被服务端触发和监听，客户端事件只能被客户端触发和监听，ui engine同理。这确保了联机时模组的正常运行。不过这复杂和严格的模式可能对于一些modpe开发者是个噩梦。
-	  </p>
-	  <br><br><p style="font-size:24px;">
-		<em>别忘了开实验玩法！</em>
-	  废话了这么多，下面我们正式开始。
-		<br>先来考虑一下生物显血如何实现。官方已经为我们提供了客户端事件"minecraft:pick_hit_result_continuous"，这个事件每tick都被触发一次，它的数据里包含了entity属性和position属性。见下表（我就是不翻译[滑稽]）。
-		  
-	  </p>
-	  <table  border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-		<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-		<tr>
-		  <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">The entity that was hit or null if it fired when moving off of an entity</td>
-		</tr>
-		<tr>
-		  <td style="border-style:solid; border-width:1; padding:9px">position</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">The position of the entity that was hit or null if it fired when moving off an entity</td>
-		</tr>
-	  </table>
-	  <p style="font-size:24px;">我们只需监听这个事件即可获得每tick虚拟指针指向的实体。
-		<br><br>下一步是获得这个实体的当前生命和生命上限。很遗憾，获取实体的"minecraft:health"组件需要在服务端进行。我们不得不在客户端自定义一个事件将该实体的数据传给服务端。到这里一些和我一样的初学者应该已经意识到了modpe与se的不同。
-		<br><br>我们之前提到，只有客户端才能与ui引擎直接通信，所以我们还要把服务端获得的数据传给客户端，再通过客户端广播自定义ui事件将生命值数据传给ui引擎，大功告成。
-		<br><br>还别高兴的太早。我们只是将血量数据传给了ui引擎而已，ui引擎要如何在屏幕上显示ui呢?我们需要实现:当玩家将指针指向实体时显示血条，当玩家移开指针后3秒內关闭血条。
+		<br><br><br>
 	  
-		<br><br>我的实现方法是，在客户端定义一个计时器。
-		
-		</p>
-	  <br><pre class='prettyprint linenums'>let timer = 0;</pre>
-	  <br>
-	  <p style="font-size:24px;">监听"minecraft:pick_hit_result_continuous"事件并检测指针指向的实体是否存在（即指针是否指向实体）。若不存在，timer++，若存在，timer归零。</p>
-	  <br><pre class='prettyprint linenums'>sys.listenForEvent("minecraft:pick_hit_result_continuous",function(eventData){
-		if(eventData.data.entity)
-		timer = 0;
-		else
-		return;
-		});
-	  </pre><br>
-	  <p style="font-size:24px;">当timer==60（1tick=0.05s）时,关闭血条。</p>
-	  <br><pre class='prettyprint linenums'>sys.update = function(){
-		timer++;
-		if(timer === 60){
-		let sendData = sys.createEventData("minecraft:send_ui_event");
-        sendData.data.data = "{}";
-        sendData.data.eventIdentifier = "time_up";
-        sys.broadcastEvent("minecraft:send_ui_event", sendData);
-		}
-		};
-	  </pre><br>
-	  <p style="font-size:24px;">以上只是粗略地介绍了下实现思路，下面将详细介绍代码实现过程。</p>
-	  <p style="font-size:24px;">先来看下ui部分，不过在此之前你应该在资源包的清单文件中加上一个属性"capabilities":["experimental_custom_ui"]</p>
-	  <p style="font-size:24px;">读者可以先查阅一下官方文档，官方文档中有的地方说的很含糊，比如:可触发事件load_ui</p><br>
-	  <h3><p id="minecraft:load_ui">minecraft:load_ui</p></h3>
-
-	  This event is used to show a UI screen to the specific player running the client script. This event will add the UI screen to the top of the UI screen stack. The screen will be shown immediately after the event is triggered. Only screens defined in a HTML file can be shown using this event.<h4>Event Data Parameters</h4>
-
-	  <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-		<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-		<tr>
-		  <td style="border-style:solid; border-width:1; padding:9px">path</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">String</td>
-		  <td style="border-style:solid; border-width:1; padding:9px"></td>
-		  <td style="border-style:solid; border-width:1; padding:9px">The file path to the screen's HTML file<br><em>此处指html文件相对于 资源包目录/experimental_ui/ 的路径</em></td>
-		</tr>
-		<tr>
-		  <td style="border-style:solid; border-width:1; padding:9px">options</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">JSON Object</td>
-		  <td style="border-style:solid; border-width:1; padding:9px"></td>
-		  <td style="border-style:solid; border-width:1; padding:9px">You can define the following options for the screen by setting their value to true or false:<h5><p id="always_accepts_input">always_accepts_input</p></h5>
-
-			If true, the screen will always accept and process input for as long as it is in the stack, even if other custom UI screens appear on top of it<br><br>
-
-			<h5><p id="render_game_behind">render_game_behind</p></h5>
-
-			If true, the game will continue to be rendered underneath this screen<br><br>
-
-			<h5><p id="absorbs_input">absorbs_input</p></h5>
-
-			If true, input will not be passed down to any other screens underneath<br>
-            <em>如果为true，输入将不会通过你的ui到达下面的其它ui，包括游戏界面。</em>
-			
-			<h5><p id="is_showing_menu">is_showing_menu</p></h5>
-
-			If true, the screen will be treated as the pause menu and the pause menu won't be allowed to show on top of this screen<br><br>
-
-			<h5><p id="should_steal_mouse">should_steal_mouse</p></h5>
-
-			If true, the screen will capture the mouse pointer and limit its movement to the UI screen<br><br>
-
-			<h5><p id="force_render_below">force_render_below</p></h5>
-
-			If true, this screen will be rendered even if another screen is on top of it and will render over them, including the HUD<br>
-			<em>HUD是指玩家的物品栏，血条，盔甲值以及饥饿度等。原文这地方其实不太准确，其实HUD在你一进入游戏就在最底层了，所以本来就不需要让你的ui在HUD下面渲染，相反，咱们待会还得给HUD加一条这个属性，让HUD能够在你的ui下面渲染。</em>
-
-			<h5><p id="render_only_when_topmost">render_only_when_topmost</p></h5>
-
-			If true, this screen will only be rendered if it is the screen at the top of the stack<br><br>
-
-		  </td>
-		</tr>
-	  </table>
-	  <p style="font-size:24px;">再来解释下send_ui_event事件（也是可触发事件），原文真的是简洁不明了。</p><br>
-	  <h3><p id="minecraft:send_ui_event">minecraft:send_ui_event</p></h3>
-
-	  This event is used to send UI events to the UI Engine for the specific player running the script. After the event is triggered, the UI event will be sent immediately.<br>Custom UI is based on HTML 5. Review the scripting demo for an example of a custom UI file.<h4>Parameters</h4>
-	  <em>惜字如金的官方。。。我是看了官方维基上的rpg_game示例才懂的。</em>
-	  <br><em>首先，script engine的特点是，无论你的mod里有多少条脚本或html文件，它们都是分别独立运行的，不同文件中通信的唯一方式是监听和触发事件。
-	  <br>而事件又分为两类，普通的事件和UI事件。客户端和服务端能够直接监听和触发普通的事件，而UI engine只能直接触发和监听UI事件。（这样说貌似不太确切，但我只能想到这么一句简洁的话来总结了。）
-		<br>"普通的事件"就不多说了。UI事件的属性如下表。
-	  </em>
-	  <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-		<tr> <th style="border-style:，solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-		<tr>
-		  <td style="border-style:solid; border-width:1; padding:9px">eventIdentifier</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">String</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">The identifier of the UI event<br><em>UI事件的id</em></td>
-		</tr>
-		<tr>
-		  <td style="border-style:solid; border-width:1; padding:9px">data</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">String</td>
-		  <td style="border-style:solid; border-width:1; padding:9px">The data for the UI event being triggered<br><em>UI事件的数据，没错，这仅仅是一个字符串，而不是一个JSON对象，不过我们可以用JSON.stringify和JSON.parse将对象转化成含JSON对象的字符串，也可以把字符串解析成JS对象。</em></td>
-		</tr>
-	  </table>
-	  <p style="font-size:24px;">脚本部分的所需的一些在其它开发文档中不清晰的内容我都已经介绍完了，获取组件等内容可以参阅官方文档或中文文档。下面是代码。</p>
-	  <p style="font-size:24px;">客户端脚本<em>client.js</em></p>
-	  <br><pre class='prettyprint linenums'>let sys = client.registerSystem(0, 0);
-		let timer = 0;
-		sys.initialize = function () {//监听和广播事件请写在本函数或update函数中
-		sys.registerEventData("my:hp", {entity: null});//注册自定义客户端事件
-		sys.listenForEvent("minecraft:client_entered_world", function (eventData) {
-
-        let uiDataTest = sys.createEventData("minecraft:load_ui");//触发load ui事件
-		uiDataTest.data.path = "game.html";
-		uiDataTest.data.options.render_game_behind = true;
-		uiDataTest.data.options.absorbs_input = false;
-		uiDataTest.data.options.is_showing_menu = false;
-		uiDataTest.data.options.force_render_below = true;
-		uiDataTest.data.options.render_only_when_topmost = false;
-		uiDataTest.data.options.should_steal_mouse = false;
-		uiDataTest.data.options.always_accepts_input = true;
-		sys.broadcastEvent("minecraft:load_ui",uiDataTest);
-		});
-
-		sys.listenForEvent("minecraft:pick_hit_result_continuous",function(eventData){//监听虚拟指针
-		if(eventData.data.entity)//判断是否是掉落物品
-		timer = 0;
-		else
-		return;
-		let entity = eventData.data.entity;
-		if(entity.__type__!=="entity") return;
-
-        let sendData0 = sys.createEventData("my:hp");
-        sendData0.data.entity = eventData.data.entity;
-        sys.broadcastEvent("my:hp", sendData0);
-
-
-		});
-		sys.listenForEvent("my:hpui",function(eventData){//监听服务端广播的my:hpui事件以获得血量数据
-		
-		
-		let sendData = sys.createEventData("minecraft:send_ui_event");
-		sendData.data.data =eventData.data.data;//直接复制过来
-        sendData.data.eventIdentifier = "hpuiEvent";//此处是ui事件的id
-
-
-        sys.broadcastEvent("minecraft:send_ui_event", sendData);
-		});
-		};
-		sys.update = function(){//系统每tick都会运行一次本函数。
-		timer++;
-		if(timer === 60){//如果3s时间到了，向ui引擎广播该事件
-		let sendData = sys.createEventData("minecraft:send_ui_event");
-
-        sendData.data.data = "{}";
-		//这个事件其实不需要传数据，所以我写了空对象。
-        sendData.data.eventIdentifier = "time_up";
-        sys.broadcastEvent("minecraft:send_ui_event", sendData);
-
-
-		}
-		};
-
-		
-	  </pre><br>
-	  <p style="font-size:24px;">服务端脚本<em>server.js</em></p>
-	  <pre class='prettyprint linenums'>let sys = server.registerSystem(0, 0);
-
-		sys.initialize = function () {
-		sys.registerEventData("my:hpui", {data: null});//注册自定义事件
-		sys.listenForEvent("my:hp",function(eventData){//监听客户端广播的事件
-
-		let entity = eventData.data.entity;
-		let sendData = sys.createEventData("my:hpui");
-		let comp = sys.getComponent(entity, "minecraft:health");
-		sendData.data.data =comp.data.value+"/"+comp.data.max;//向客户端发送了一个形如"当前血量/血量上限"的数据
-
-		sys.broadcastEvent("my:hpui", sendData);
-
-		});
-		};
-		
-	  </pre>
-	  <p style="font-size:24px;"><em style="color:red;">注意，如上所述，HUD是在最底层的，所以我们在资源包添加一个json文件使其强制在最底层渲染。</em><br>
-		路径：资源包目录/ui/hud_screen.json<br>
-		<em>hud_screen.json</em></p>
-	  <pre class='prettyprint linenums'>
-		{
-		"hud_screen@common.base_screen": {
-        "always_accepts_input": true
-		}
-		}
-	  </pre>
+	</div>
+	<div style="text-align:center;background-color:#ECC795;">
+	  <br><br>
+	  <img style="width:300px;margin:0 auto;" src="img/shark.png"/>
+	  <p style="font-size:28px;font-weight:bold;">Flappy Shark
+		<br>美食家征途番外小游戏
+	  </p>
 	  
-	  </div>
-	<p style="font-size:24px;">html文件，路径上面说过了。<em>index.html</em>
+	  <em>2019-9-5</em>
 	  <br>
-	  <textarea readonly="true" cols="45" rows="50">﻿<!DOCTYPE html>
-		<html>
-           <head>
-			<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-			<script src="UIEngine.js"></script>
-			<link rel="stylesheet" href="styles.css" />
-		  </head>
-		  <body>
-			  <div id="_body_" class="screenBox">
-			  <div id="_blood0_" style="position:absolute;left:100px;top:200px;width:240px;height:30px;border:2px solid black;"></div>
-			  <div id="_blood_" style="position:absolute;left:100px;top:200px;width:240px;height:30px;background:red;border:2px solid black;"></div>
-			  <div id="_blint_" style="position:absolute;left:100px;top:200px;width:240px;height:30px;border:2px solid black;">0/1</div>
-			</div>
-		  </body>
-
-          <script type="text/javascript">
-			//UIEngine.js请到官方维基上的示例里扒
-let blood = document.getElementById("_blood_");
-let blood0 = document.getElementById("_blood0_");
-let blint = document.getElementById("_blint_");//显示血量数字
-blood.style.display = "none";
-blood0.style.display = "none";
-blint.style.display = "none";
-
-let scriptInterface = null;
-engine.on("facet:updated:core.scripting", function (interface){
-			  scriptInterface = interface;
-		  });
-
-engine.trigger("facet:request", ["core.scripting"]);//获取script引擎
-
-engine.on("hpuiEvent", function (uiData){//监听ui事件
-
-			  blood.style.display = "block";
-			  blood0.style.display = "block";
-			  blint.style.display = "block";
-
-
-			  blint.innerHTML = uiData;
-			  blood.style.width = 240 * eval(uiData) + "px";
-
-		  });
-engine.on("time_up", function(eventData){
-			  blood.style.display = "none";
-			  blood0.style.display = "none";
-			  blint.style.display = "none";
-
-		  });
-        </script>
-		    </html>
-		
-	  </textarea>
-	  <br>
-	  大功告成！<a href="mod/hpDisplay.mcaddon">代码下载</a>
-	</p>
-<p style="font-size:28px;font-weight:bold;">
-  萌新才疏学浅，如有疑问或疏漏和错误，欢迎指出！联系qq：2351579300<br>
-加入Bedrock Realm小组，参与基岩版资源开发！
-		<br>qq群号：850104972
-		</p>
-		<br>
-		  
-	<a style="font-size:24px;">下一篇文章∶暂无</a>
-  <script>
+	  <a href="minigame//sharkInTheSea/"><button>进入游戏</button></a>
+	  
+	</div>
+	
+<script>
 	$(document).ready(function(){
-  document.getElementById('mytitle').innerHTML= "Script Engine实战系列";
+  document.getElementById('mytitle').innerHTML= "H5 小游戏";
   $("#side").click(function(){
     $("#menu").slideToggle();
   });
@@ -340,6 +54,7 @@ engine.on("time_up", function(eventData){
     $("#menu").slideToggle();
   });
 });
-  </script>
-	</body>
-</html>		
+</script>
+		</body>
+		</html>
+		
