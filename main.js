@@ -1,0 +1,294 @@
+////手机上测试用
+//var FS = {
+//	writeFileSync : function(file,content){
+//		FILE[file] = content;
+//	},
+//	appendFileSync : function(file,content){
+//		FILE[file] += content;
+//	},
+//	readFileSync : function(file){
+//		return FILE[file];
+//	},
+//	existsSync : function(file){
+//		if(FILE[file]){
+//			return true;
+//		}
+//		else{
+//			return false;
+//		}
+//	}
+//};
+//var FILE = {
+//	
+//};
+//var require = function(fsf){
+//	if(fsf === "fs"){
+//		return FS;
+//	}
+//};
+////---------
+///*const { URL } = require('url')
+//function getRedirectLink(link) {
+//  var url = new URL(link);
+//  var redirect = url.searchParams.get("url");
+//  return redirect;
+//}
+//*/
+//var fs = require('fs');
+//var INF;
+function rand(x,y){
+    return Math.ceil((Math.random()*(y-x+1))+x-1);
+}
+var game = new Phaser.Game(960, 576, Phaser.WEBGL, 'game_stage');
+
+game.States = {};
+
+game.States.preload = function(){
+	this.preload = function(){
+	
+//    if(fs.existsSync('inf.json')){
+//		
+//	}
+//	else{
+//		fs.writeFileSync('inf.json','[]');
+//	}
+//	INF = JSON.parse(fs.readFileSync('inf.json'));
+	var loadText = game.add.text(game.world.centerX, game.world.centerY + 100, '', {
+									 fontSize: '30px',
+									 fill: 'white'
+								 });
+	loadText.anchor.setTo(0.5, 0.5);
+	loadText.text = '铁岭高中三年十二班午间音乐系统';
+	var loadText1 = game.add.text(game.world.centerX, game.world.centerY + 150, '', {
+									  fontSize: '30px',
+									  fill: 'white'
+								  });
+	loadText1.anchor.setTo(0.5, 0.5);
+	loadText1.text = '程序：Fe';
+	var loadText1 = game.add.text(game.world.centerX, game.world.centerY + 200, '', {
+									  fontSize: '30px',
+									  fill: 'white'
+								  });
+	loadText1.anchor.setTo(0.5, 0.5);
+	loadText1.text = '本软件使用Phaser2游戏引擎开发';
+	var progressText = game.add.text(game.world.centerX, game.world.centerY, '0%', {
+										 fontSize: '60px',
+										 fill: 'white'
+									 });
+	progressText.anchor.setTo(0.5, 0.5);
+	game.load.onFileComplete.add(function(progress) {
+								 progressText.text = progress + '%';
+								 });
+	game.load.json('date', 'http://pvhu.meowcat.org/date.json');							 
+    game.load.json('data', 'http://pvhu.meowcat.org/data.json');
+	game.load.json('save', 'http://pvhu.meowcat.org/save.json');
+	game.load.image('space', 'assets/starfield.jpg');
+    game.load.image('fire1', 'assets/fire1.png');
+    game.load.image('fire2', 'assets/fire2.png');
+    game.load.image('fire3', 'assets/fire3.png');
+    game.load.image('smoke', 'assets/smoke-puff.png');
+
+    game.load.spritesheet('ball', 'assets/plasmaball.png', 128, 128);
+
+	game.load.image('menu', 'assets/menu.png');
+	game.load.image('moon', 'assets/moon.png');
+	game.load.image('star', 'assets/star.png');
+	game.load.image('star2', 'assets/star2.png');
+	//game.load.audio('music_kungfu', 'http://m10.music.126.net/20200105084155/5985b1f02079ec2a396fec190a0f06f4/ymusic/515b/055f/055c/f13c4e04e22542fcf0ae268ea272474b.mp3');
+	
+	};
+	this.create = function(){    
+		game.state.start('menu', true, false);
+	};
+};
+
+game.States.menu = function() {
+
+    this.create = function() {
+		    //var aa = [1,2,3,4,5,6,7,8,9,10]
+    
+
+        var bg = game.add.sprite(0, 0, 'menu');
+		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
+		mn.anchor.setTo(0.5, 0.5);
+		mn.width = 346;
+		mn.height = 346;
+		this.mn = mn;
+        var version = game.add.text(0, 0, '午间音乐', {
+            fill: 'white',
+            fontSize: '31px'
+        });
+        version.left = game.width / 2 - version.width / 2;
+       // var start = game.add.text(0, 0, '欢迎', {
+       //     fill: 'white',
+      //      fontSize: '31px'
+      //  });
+      //  start.left = game.width / 2 - start.width / 2;
+       // start.top = 490;
+		//this.start = start;
+		var dateJSON = game.cache.getJSON('date');
+		var dataJSON = game.cache.getJSON('data');
+		var saveJSON = game.cache.getJSON('save');
+		//function s(a,b){ return Math.random()>0.5 ? 1:-1;}
+    //saveJSON.sort(s);
+	//for(var jj = 0;jj < saveJSON.length;jj++)
+ //  document.write('['+saveJSON[jj]+'],');
+		var rn=0;
+		var has = false;
+		var date=new Date();
+		//alert(date.getDate());
+		for(rn = 0;rn < dateJSON.length;rn ++){
+			if(parseInt( dateJSON[rn].split('-')[0]) === date.getMonth() + 1 && parseInt( dateJSON[rn].split('-')[1]) === date.getDate()){
+				has = true;
+				break;
+			}
+		}
+		if(has === false){
+			rn = rand(0,saveJSON.length - 1);
+		}
+		//alert(date.getMonth());
+		//var has = false;
+		var g;
+		//var textArr = [];
+		var to = [];
+		
+		for(g = 0;g < saveJSON[rn].length;g++){
+			to[g] = game.add.text(0, 490 + g*50,dataJSON[saveJSON[rn][g]].name , {
+            fill: 'white',
+            fontSize: '31px'
+        });
+		to[g].left = game.width / 2 - to[g].width / 2;
+		to[g].b = game.add.button(to[g].left, to[g].top, 'star', function(){
+			if(dataJSON[saveJSON[rn][this.g]].url.charAt(0) !== '0'){
+				
+				window.open(dataJSON[saveJSON[rn][this.g]].url);
+				
+				}else{
+					to[this.g].fill = 'red';
+				}
+//				if(has){}else{
+//				INF.push(rn);
+//		        fs.writeFileSync('inf.json',JSON.stringify(INF));
+//		        alert(JSON.parse(fs.readFileSync('inf.json'))[0]);
+//				has = true;
+//				}
+					}, to[g].b);
+					to[g].b.width = to[g].width;
+					to[g].b.alpha = 0;
+					to[g].b.height = to[g].height;
+					to[g].b.g = g;
+			//alert(dataJSON[saveJSON[rn][g]].name);
+		}
+		
+		//<alert(dataJSON[saveJSON[rn][0]].name);
+		//var music_1 = game.add.audio('music_kungfu',0.8,true);
+  		//	music_1.play();       
+//		var html = game.cache.getText('html');
+//	    var harr = html.split('\n');
+//		var i,
+//		k = 1,
+//		j = 0,
+//		obj = [];
+//		for(i = 0;i < harr.length;i ++){
+//			if(harr[i] === ''){
+//				k = 2;
+//				continue;
+//			}
+//			if(k % 2 === 0){
+//				obj.push({
+//					id : j,
+//					name : harr[i],
+//					url : harr[i + 1]
+//				});
+//				j ++;
+//				k = 1;
+//			}
+//		}
+//		i = 0;
+//		for(j = 0;j < 59;j ++){
+//			if(i === 5
+//			|| i === 7
+//			|| i === 10
+//			|| i === 17
+//			|| i === 22
+//			|| i === 23
+//			|| i === 25
+		
+		
+		
+//			|| i === 26
+//			|| i === 29
+//			|| i === 31
+//			|| i === 33){
+//				obj.push([j]);
+//				i ++;
+//			}
+//			else{
+//				
+//				obj.push([j,j+1]);
+//				i ++;
+//				j ++;
+//			}
+//		}
+//		document.write(JSON.stringify(obj));
+		game.physics.startSystem(Phaser.Physics.ARCADE);
+
+   // game.add.tileSprite(0, 0, game.width, game.height, 'space');
+
+    emitter = game.add.emitter(game.world.centerX, game.world.centerY, 400);
+
+    emitter.makeParticles( [ 'fire1', 'fire2', 'fire3', 'smoke' ] );
+
+    emitter.gravity = 200;
+    emitter.setAlpha(1, 0, 3000);
+    emitter.setScale(0.8, 0, 0.8, 0, 3000);
+
+    emitter.start(false, 3000, 5);
+
+    sprite = game.add.sprite(0, 300, 'star', 0);
+    this.sprite = sprite;
+    game.physics.arcade.enable(sprite);
+
+    game.physics.arcade.gravity.y = 150;
+    game.physics.arcade.checkCollision.left = false;
+    game.physics.arcade.checkCollision.right = false;
+
+    sprite.body.setSize(80, 80, 0, 0);
+    sprite.body.collideWorldBounds = true;
+    sprite.body.bounce.set(1);
+    sprite.body.velocity.set(300, 200);
+
+    //sprite.inputEnabled = true;
+
+
+  //  sprite.animations.add('pulse');
+    //sprite.play('pulse', 30, true);
+
+    sprite.anchor.set(0.5);
+	
+    };  
+	this.update = function(){
+		this.mn.angle += 1;
+		this.sprite.angle += 6;
+		var px = sprite.body.velocity.x;
+    var py = sprite.body.velocity.y;
+
+    px *= -1;
+    py *= -1;
+
+    emitter.minParticleSpeed.set(px, py);
+    emitter.maxParticleSpeed.set(px, py);
+
+    emitter.emitX = sprite.x;
+    emitter.emitY = sprite.y;
+
+    // emitter.forEachExists(game.world.wrap, game.world);
+    game.world.wrap(sprite, 64);
+		//this.start.text = game.cache.checkSoundKey('music_kungfu');
+	};
+};
+
+game.state.add('preload', game.States.preload);
+
+game.state.start('preload');
+game.state.add('menu', game.States.menu);
