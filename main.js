@@ -36,9 +36,7 @@
 //*/
 //var fs = require('fs');
 //var INF;
-var gameDom = document.getElementById("game");
-gameDom.style.left -= 5;
-gameDom.style.top -= 5;
+
 function rand(x,y){
     return Math.ceil((Math.random()*(y-x+1))+x-1);
 }
