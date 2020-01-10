@@ -60,6 +60,7 @@ function getQian(dataJSON,saveJSON,a){
 	return str;
 }
 
+
 var game = new Phaser.Game(960, 576, Phaser.WEBGL, 'game_stage');
 
 game.States = {};
