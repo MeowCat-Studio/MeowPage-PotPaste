@@ -36,6 +36,9 @@
 //*/
 //var fs = require('fs');
 //var INF;
+var gameDom = document.getElementById("game");
+gameDom.style.left -= 5;
+gameDom.style.top -= 5;
 function rand(x,y){
     return Math.ceil((Math.random()*(y-x+1))+x-1);
 }
@@ -137,11 +140,16 @@ game.States.preload = function(){
 		mn.width = 346;
 		mn.height = 346;
 		this.mn = mn;
-        var version = game.add.text(0, 80, '随机抽取音乐', {
+        var version = game.add.text(0, 30, '随机抽取音乐', {
             fill: 'white',
             fontSize: '31px'
         });
         version.left = game.width / 2 - version.width / 2;
+		var version0 = game.add.text(0, 80, '今日音乐揭晓：', {
+            fill: 'white',
+            fontSize: '31px'
+        });
+        version0.left = game.width / 2 - version0.width / 2;
 		var song = game.add.text(0, 0, 'music', {
             fill: 'white',
             fontSize: '31px',
