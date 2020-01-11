@@ -201,7 +201,7 @@
     },
     {
         "id": 40,
-        "name": "恋爱循环 - 腾格尔",
+        "name": "勇气",
         "url": "0"
     },
     {
@@ -293,5 +293,20 @@
         "id": 58,
         "name": "UN village - 伯贤（B站视频MV）",
         "url": "player.bilibili.com/player.html?aid=58642200&cid=102263820&page=1"
+    },
+    {
+        "id" : 59,
+        "name" : "我为你歌唱 - 曲婉婷",
+        "url" : "0"
+    },
+    {
+         "id" : 60,
+         "name" : "When The Moon's Reading Out Star",
+         "url" : "0"
+    },
+    {
+         "id" : 61,
+         "name" : "Engel - Rammstein"
+         "url" : "0"
     }
 ]
