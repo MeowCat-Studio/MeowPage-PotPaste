@@ -46,7 +46,317 @@
     },
     {
         "id": 9,
-        "name": "大氿歌 - 戴荃",
+        "name": "大氿歌 - 戴荃",[{
+		"id": 0,
+		"name": "好想爱这个世界啊",
+		"url": "0"
+	},
+	{
+		"id": 1,
+		"name": "大悲咒",
+		"url": "0"
+	},
+	{
+		"id": 2,
+		"name": "everglo - coldplay",
+		"url": "http://music.163.com/song/media/outer/url?id=37240630.mp3"
+	},
+	{
+		"id": 3,
+		"name": "Rose - the chainswoken",
+		"url": "0"
+	},
+	{
+		"id": 4,
+		"name": "你就不要想起我",
+		"url": "http://music.163.com/song/media/outer/url?id=28018075.mp3"
+	},
+	{
+		"id": 5,
+		"name": "小满",
+		"url": "http://music.163.com/song/media/outer/url?id=1366551442.mp3"
+	},
+	{
+		"id": 6,
+		"name": "季曲 Seasons of Asia",
+		"url": "http://music.163.com/song/media/outer/url?id=4880513.mp3"
+	},
+	{
+		"id": 7,
+		"name": "拉德斯基进行曲",
+		"url": "http://music.163.com/song/media/outer/url?id=396841.mp3"
+	},
+	{
+		"id": 8,
+		"name": "回答 - 张钰琪",
+		"url": "0"
+	},
+	{
+		"id": 9,
+		"name": "大氿歌 - 戴荃",
+		"url": "http://music.163.com/song/media/outer/url?id=1349959772.mp3"
+	},
+	{
+		"id": 10,
+		"name": "蓝书签",
+		"url": "http://music.163.com/song/media/outer/url?id=417613399.mp3"
+	},
+	{
+		"id": 11,
+		"name": "祝我爱你到天荒地老",
+		"url": "http://music.163.com/song/media/outer/url?id=1369601580.mp3"
+	},
+	{
+		"id": 12,
+		"name": "不为谁做的歌",
+		"url": "0"
+	},
+	{
+		"id": 13,
+		"name": "庐州月 - 许嵩",
+		"url": "http://music.163.com/song/media/outer/url?id=167850.mp3"
+	},
+	{
+		"id": 14,
+		"name": "Lemon - 米津玄师",
+		"url": "http://music.163.com/song/media/outer/url?id=536622304.mp3"
+	},
+	{
+		"id": 15,
+		"name": "Flamingo（火烈鸟） - 米津玄师",
+		"url": "http://music.163.com/song/media/outer/url?id=1318880077.mp3"
+	},
+	{
+		"id": 16,
+		"name": "耿耿于怀 - 王笑文",
+		"url": "http://music.163.com/song/media/outer/url?id=407679465.mp3"
+	},
+	{
+		"id": 17,
+		"name": "飞云之下 - 韩红 林俊杰",
+		"url": "0"
+	},
+	{
+		"id": 18,
+		"name": "若能绽放光芒",
+		"url": "http://music.163.com/song/media/outer/url?id=32196804.mp3"
+	},
+	{
+		"id": 19,
+		"name": "O'sole mio",
+		"url": "http://music.163.com/song/media/outer/url?id=1413795181.mp3"
+	},
+	{
+		"id": 20,
+		"name": "军中女郎 - 石倚洁",
+		"url": "http://pvhu.meowcat.org/jznl.mp3"
+	},
+	{
+		"id": 21,
+		"name": "晚安",
+		"url": "http://music.163.com/song/media/outer/url?id=1403445370.mp3"
+	},
+	{
+		"id": 22,
+		"name": "拾忆",
+		"url": "http://music.163.com/song/media/outer/url?id=4872533.mp3"
+	},
+	{
+		"id": 23,
+		"name": "撒野（小说版）",
+		"url": "0"
+	},
+	{
+		"id": 24,
+		"name": "飞云之下",
+		"url": "0"
+	},
+	{
+		"id": 25,
+		"name": "雅俗共赏",
+		"url": "http://music.163.com/song/media/outer/url?id=411214279.mp3"
+	},
+	{
+		"id": 26,
+		"name": "追梦的蚂蚁",
+		"url": "http://music.163.com/song/media/outer/url?id=440241201.mp3"
+	},
+	{
+		"id": 27,
+		"name": "不染",
+		"url": "http://music.163.com/song/media/outer/url?id=536099160.mp3"
+	},
+	{
+		"id": 28,
+		"name": "只有爱过",
+		"url": "0"
+	},
+	{
+		"id": 29,
+		"name": "Its always the little things - 郭顶",
+		"url": "0"
+	},
+	{
+		"id": 30,
+		"name": "destiny - MaMamoo",
+		"url": "0"
+	},
+	{
+		"id": 31,
+		"name": "黑色眼泪 - 土屋安娜",
+		"url": "0"
+	},
+	{
+		"id": 32,
+		"name": "前夜 - EXO",
+		"url": "0"
+	},
+	{
+		"id": 33,
+		"name": "漫游宇宙 - EXO",
+		"url": "0"
+	},
+	{
+		"id": 34,
+		"name": "无法原谅（《回家的诱惑》片头曲）",
+		"url": "http://music.163.com/song/media/outer/url?id=28892231.mp3"
+	},
+	{
+		"id": 35,
+		"name": "Stay - Black Pink",
+		"url": "http://music.163.com/song/media/outer/url?id=1352968928.mp3"
+	},
+	{
+		"id": 36,
+		"name": "蔷薇革命 - 洛天依",
+		"url": "http://music.163.com/song/media/outer/url?id=32785784.mp3"
+	},
+	{
+		"id": 37,
+		"name": "内蒙古黑怕",
+		"url": "http://music.163.com/song/media/outer/url?id=32958415.mp3"
+	},
+	{
+		"id": 38,
+		"name": "Lotto - EXO",
+		"url": "0"
+	},
+	{
+		"id": 39,
+		"name": "Ko Ko Bop（叩叩趴） - EXO",
+		"url": "0"
+	},
+	{
+		"id": 40,
+		"name": "勇气",
+		"url": "0"
+	},
+	{
+		"id": 41,
+		"name": "陪你去流浪 - 薛之谦",
+		"url": "http://music.163.com/song/media/outer/url?id=1374056689.mp3"
+	},
+	{
+		"id": 42,
+		"name": "青鸟",
+		"url": "0"
+	},
+	{
+		"id": 43,
+		"name": "Rise",
+		"url": "http://music.163.com/song/media/outer/url?id=1313107065.mp3"
+	},
+	{
+		"id": 44,
+		"name": "Let's fall in love for the night",
+		"url": "http://music.163.com/song/media/outer/url?id=1314353013.mp3"
+	},
+	{
+		"id": 45,
+		"name": "第三十八年夏至",
+		"url": "http://music.163.com/song/media/outer/url?id=101126.mp3"
+	},
+	{
+		"id": 46,
+		"name": "第三十八年夏至 - 河图",
+		"url": "http://music.163.com/song/media/outer/url?id=101126.mp3"
+	},
+	{
+		"id": 47,
+		"name": "永定四十年 - 河图",
+		"url": "0"
+	},
+	{
+		"id": 48,
+		"name": "Animals",
+		"url": "0"
+	},
+	{
+		"id": 49,
+		"name": "Toxic",
+		"url": "http://music.163.com/song/media/outer/url?id=20515939.mp3"
+	},
+	{
+		"id": 50,
+		"name": "失眠飞行",
+		"url": "http://music.163.com/song/media/outer/url?id=1365898499.mp3"
+	},
+	{
+		"id": 51,
+		"name": "一半",
+		"url": "http://music.163.com/song/media/outer/url?id=35528482.mp3"
+	},
+	{
+		"id": 52,
+		"name": "红色高跟鞋",
+		"url": "http://music.163.com/song/media/outer/url?id=208902.mp3"
+	},
+	{
+		"id": 53,
+		"name": "I want love（studio mix）",
+		"url": "http://music.163.com/song/media/outer/url?id=25835632.mp3"
+	},
+	{
+		"id": 54,
+		"name": "你的答案",
+		"url": "http://music.163.com/song/media/outer/url?id=1400256289.mp3"
+	},
+	{
+		"id": 55,
+		"name": "芒种",
+		"url": "http://music.163.com/song/media/outer/url?id=1369798757.mp3"
+	},
+	{
+		"id": 56,
+		"name": "My Friend - Spyair",
+		"url": "http://music.163.com/song/media/outer/url?id=22682066.mp3"
+	},
+	{
+		"id": 57,
+		"name": "electric kiss - EXO （B站视频MV）",
+		"url": "player.bilibili.com/player.html?aid=18978950&cid=30953681&page=1"
+	},
+	{
+		"id": 58,
+		"name": "UN village - 伯贤（B站视频MV）",
+		"url": "player.bilibili.com/player.html?aid=58642200&cid=102263820&page=1"
+	},
+	{
+		"id": 59,
+		"name": "我为你歌唱 - 曲婉婷",
+		"url": "0"
+	},
+	{
+		"id": 60,
+		"name": "When The Moon's Reading Out Star",
+		"url": "0"
+	},
+	{
+		"id": 61,
+		"name": "Engel - Rammstein",
+		"url": "0"
+	}
+]
         "url": "http://music.163.com/song/media/outer/url?id=1349959772.mp3"
     },
     {
