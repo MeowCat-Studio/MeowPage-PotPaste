@@ -123,9 +123,10 @@ game.States.preload = function(){
         this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
         this.scale.forcePortrait = true;
         this.scale.refresh();
-		var gui = require('nw.gui');
-        var win = gui.Window.get();
-		win.enterFullscreen();	
+	var gui = require('nw.gui');
+        var win;
+        if(gui){win = gui.Window.get();
+		win.enterFullscreen();	}
 		 var bg = game.add.sprite(0, 0, 'menu');
 		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
 		var dateJSON = game.cache.getJSON('date');
@@ -220,7 +221,8 @@ game.States.menu = function() {
 		    //var aa = [1,2,3,4,5,6,7,8,9,10]
     
         var gui = require('nw.gui');
-        var win = gui.Window.get();
+        var win;
+        if(win) win = gui.Window.get();
 		var winwin = true;
         var bg = game.add.sprite(0, 0, 'menu');
 		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
@@ -377,7 +379,7 @@ game.States.menu = function() {
 	game.input.onTap.add(function(pointer, doubleTap) {
             //game.state.start('level');
 
-			if(doubleTap){
+			if(doubleTap && win){
 				if(winwin){win.leaveFullscreen();winwin = false}
 			else if(!winwin){win.enterFullscreen();	winwin = true;}
 			}
