@@ -123,7 +123,8 @@ game.States.preload = function(){
         this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
         this.scale.forcePortrait = true;
         this.scale.refresh();
-	var gui = require('nw.gui');
+	var gui;
+        if(require) gui = require('nw.gui');
         var win;
         if(gui){win = gui.Window.get();
 		win.enterFullscreen();	}
@@ -220,7 +221,8 @@ game.States.menu = function() {
     this.create = function() {
 		    //var aa = [1,2,3,4,5,6,7,8,9,10]
     
-        var gui = require('nw.gui');
+        var gui;
+        if(require) = require('nw.gui');
         var win;
         if(win) win = gui.Window.get();
 		var winwin = true;
