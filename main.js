@@ -61,7 +61,7 @@ function getQian(dataJSON,saveJSON,a){
 }
 
 
-var game = new Phaser.Game(960, 576, Phaser.WEBGL, 'game_stage');
+var game = new Phaser.Game(960, 576, Phaser.AUTO, 'game_stage');
 
 game.States = {};
 
@@ -379,7 +379,7 @@ game.States.menu = function() {
 	game.input.onTap.add(function(pointer, doubleTap) {
             //game.state.start('level');
 
-			if(doubleTap && win){
+			if(doubleTap && gui){
 				if(winwin){win.leaveFullscreen();winwin = false}
 			else if(!winwin){win.enterFullscreen();	winwin = true;}
 			}
