@@ -36,7 +36,6 @@
 //*/
 //var fs = require('fs');
 //var INF;
-
 function rand(x,y){
     return Math.ceil((Math.random()*(y-x+1))+x-1);
 }
@@ -60,10 +59,17 @@ function getQian(dataJSON,saveJSON,a){
 	return str;
 }
 
+var game = new Phaser.Game(960, 576, Phaser.WEBGL, 'game_stage');
 
-var game = new Phaser.Game(960, 576, Phaser.AUTO, 'game_stage');
+/*game.onBlur.add(function(){
+	alert("error");
+});*/
 
 game.States = {};
+
+var ranSeed = new Date().toDateString();
+//var chance = new Chance(ranSeed);
+var test ;
 
 game.States.preload = function(){
 	this.preload = function(){
@@ -92,7 +98,7 @@ game.States.preload = function(){
 									  fill: 'white'
 								  });
 	loadText1.anchor.setTo(0.5, 0.5);
-	loadText1.text = '本软件使用Phaser2游戏引擎开发';
+	loadText1.text = '本软件使用Phaser2开发';
 	var progressText = game.add.text(game.world.centerX, game.world.centerY, '0%', {
 										 fontSize: '60px',
 										 fill: 'white'
@@ -123,11 +129,12 @@ game.States.preload = function(){
         this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
         this.scale.forcePortrait = true;
         this.scale.refresh();
-	var gui;
-        if(require) gui = require('nw.gui');
-        var win;
-        if(gui){win = gui.Window.get();
-		win.enterFullscreen();	}
+		var gui,win;
+		if(typeof require !== "undefined"){
+		gui = require('nw.gui');
+        win = gui.Window.get();
+		win.enterFullscreen();	
+		}
 		 var bg = game.add.sprite(0, 0, 'menu');
 		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
 		var dateJSON = game.cache.getJSON('date');
@@ -141,16 +148,11 @@ game.States.preload = function(){
 		mn.width = 346;
 		mn.height = 346;
 		this.mn = mn;
-        var version = game.add.text(0, 30, '随机抽取音乐', {
+        var version = game.add.text(0, 80, '随机抽取音乐', {
             fill: 'white',
             fontSize: '31px'
         });
         version.left = game.width / 2 - version.width / 2;
-		var version0 = game.add.text(0, 80, '今日音乐揭晓：', {
-            fill: 'white',
-            fontSize: '31px'
-        });
-        version0.left = game.width / 2 - version0.width / 2;
 		var song = game.add.text(0, 0, 'music', {
             fill: 'white',
             fontSize: '31px',
@@ -185,6 +187,8 @@ game.States.preload = function(){
 		}
 		if(has === false){
 			rn = rand(0,saveJSON.length - 1);
+			
+			test = rn;
 		}
 		this.rn = rn;
 		//game.state.start('menu', true, false);
@@ -221,10 +225,11 @@ game.States.menu = function() {
     this.create = function() {
 		    //var aa = [1,2,3,4,5,6,7,8,9,10]
     
-        var gui;
-        if(require) = require('nw.gui');
-        var win;
-        if(win) win = gui.Window.get();
+        var gui,win;
+		if(typeof require !== "undefined"){
+		gui = require('nw.gui');
+        win = gui.Window.get();
+		}
 		var winwin = true;
         var bg = game.add.sprite(0, 0, 'menu');
 		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
@@ -256,7 +261,8 @@ game.States.menu = function() {
 			}
 		}
 		if(has === false){
-			rn = rand(0,saveJSON.length - 1);
+			//rn = rand(0,saveJSON.length - 1);
+			rn = test;
 		}
 		//alert(date.getMonth());
 		//var has = false;
@@ -380,10 +386,11 @@ game.States.menu = function() {
     sprite.anchor.set(0.5);
 	game.input.onTap.add(function(pointer, doubleTap) {
             //game.state.start('level');
-
-			if(doubleTap && gui){
+if(typeof require !== "undefined"){
+			if(doubleTap){
 				if(winwin){win.leaveFullscreen();winwin = false}
 			else if(!winwin){win.enterFullscreen();	winwin = true;}
+			}
 			}
 	});
 			
