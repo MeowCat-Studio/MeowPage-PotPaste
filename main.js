@@ -41,38 +41,25 @@ function rand(x,y){
 }
 
   
-  function fullScreen(state){
+  function fullScreen(){
 
-    if(window.navigator.userAgent.indexOf('MSIE')<0){
-      //console.log(window.navigator.userAgent);
-      //console.log(window.navigator.userAgent.indexOf('MSIE'));
-      console.log('显示能进入或者退出全屏的');
-    }
-
-    //console.log(document.body.requestFullscreen);
-
-    let main = document.body
-    if (state==='full') {
-      if (document.exitFullscreen) {
-        document.exitFullscreen()
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen()
-      } else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen()
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen()
-      }
-    } else if(state==='half'){
-      if (main.requestFullscreen) {
-        main.requestFullscreen()
-      } else if (main.mozRequestFullScreen) {
-        main.mozRequestFullScreen()
-      } else if (main.webkitRequestFullScreen) {
-        main.webkitRequestFullScreen()
-      } else if (main.msRequestFullscreen) {
-        main.msRequestFullscreen()
-      }
-    }
+var docElm = document.documentElement;
+         // W3C
+         if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+         }
+         // FireFox
+         else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+         }
+         // Chrome等
+         else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+         }
+         // IE11
+         else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+         }
   }
 
 function getSong(dataJSON,id){
