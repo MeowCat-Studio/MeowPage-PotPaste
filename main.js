@@ -40,6 +40,41 @@ function rand(x,y){
     return Math.ceil((Math.random()*(y-x+1))+x-1);
 }
 
+  
+  function fullScreen(state){
+
+    if(window.navigator.userAgent.indexOf('MSIE')<0){
+      //console.log(window.navigator.userAgent);
+      //console.log(window.navigator.userAgent.indexOf('MSIE'));
+      console.log('显示能进入或者退出全屏的');
+    }
+
+    //console.log(document.body.requestFullscreen);
+
+    let main = document.body
+    if (state==='full') {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen()
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen()
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen()
+      }
+    } else if(state==='half'){
+      if (main.requestFullscreen) {
+        main.requestFullscreen()
+      } else if (main.mozRequestFullScreen) {
+        main.mozRequestFullScreen()
+      } else if (main.webkitRequestFullScreen) {
+        main.webkitRequestFullScreen()
+      } else if (main.msRequestFullscreen) {
+        main.msRequestFullscreen()
+      }
+    }
+  }
+
 function getSong(dataJSON,id){
 	var i;
 	for(i = 0;i < dataJSON.length;i ++){
@@ -134,7 +169,7 @@ game.States.preload = function(){
 		gui = require('nw.gui');
         win = gui.Window.get();
 		win.enterFullscreen();	
-		}
+		}else{fullScreen();}
 		 var bg = game.add.sprite(0, 0, 'menu');
 		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
 		var dateJSON = game.cache.getJSON('date');
