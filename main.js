@@ -81,7 +81,7 @@ function getQian(dataJSON,saveJSON,a){
 	return str;
 }
 
-var game = new Phaser.Game(960, 576, Phaser.WEBGL, 'game_stage');
+var game = new Phaser.Game(960, 576, Phaser.CANVAS, 'game_stage');
 
 /*game.onBlur.add(function(){
 	alert("error");
