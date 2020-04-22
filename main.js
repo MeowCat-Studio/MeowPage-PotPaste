@@ -36,6 +36,23 @@
 //*/
 //var fs = require('fs');
 //var INF;
+var excludeSpecial = function(jsonstr) {  
+   //let jsonstr =  "{\"message\":null,\"respData\":null,\"rspHead\":null,\"status\":\"success\"}";
+//正则表达式 匹配全部"\" 需要加 /g
+let reg = /\\/g;
+//使用replace方法将全部匹配正则表达式的转义符替换为空
+let replaceAfter = jsonstr.replace(reg,'');
+
+    return replaceAfter;  
+ };  
+ 
+function getWY(){  
+    var s = "https:\/\/m7.music.126.net\/20200422194633\/522544ec0b33c712c1f4933fa668b416\/ymusic\/5159\/0552\/0109\/f321349aaa2819d5d0716cda3eda6d71.mp3";;  
+    //console.log(s);  
+  //  document.writeln(excludeSpecial(s));  
+    //document.writeln(s); 
+	return excludeSpecial(s);
+};  
 function rand(x,y){
     return Math.ceil((Math.random()*(y-x+1))+x-1);
 }
@@ -132,6 +149,11 @@ game.States.preload = function(){
 	game.load.json('date', 'http://pvhu.meowcat.org/date.json');							 
     game.load.json('data', 'http://pvhu.meowcat.org/data.json');
 	game.load.json('save', 'http://pvhu.meowcat.org/save.json');
+	
+		/*
+		
+		*/
+	
 	game.load.image('space', 'assets/starfield.jpg');
     game.load.image('fire1', 'assets/fire1.png');
     game.load.image('fire2', 'assets/fire2.png');
@@ -148,6 +170,8 @@ game.States.preload = function(){
 	
 	};
 	this.create = function(){  
+	//getWY();
+	
         this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
         this.scale.forcePortrait = true;
         this.scale.refresh();
@@ -162,9 +186,13 @@ game.States.preload = function(){
 		var dateJSON = game.cache.getJSON('date');
 		var dataJSON = game.cache.getJSON('data');
 		var saveJSON = game.cache.getJSON('save');
+		//var testJSON = game.cache.getJSON('test');
 		this.dataJSON = dataJSON;
 		this.dateJSON = dateJSON;
 		this.saveJSON = saveJSON;
+		//this.testJSON = testJSON;
+		
+		//document.write(testJSON.data[0].url);
 		this.timer = 0;
 		mn.anchor.setTo(0.5, 0.5);
 		mn.width = 346;
@@ -243,10 +271,69 @@ game.States.preload = function(){
 };
 
 game.States.menu = function() {
-
+	this.preload = function(){
+		var loadText = game.add.text(game.world.centerX, game.world.centerY + 100, '', {
+									 fontSize: '30px',
+									 fill: 'white'
+								 });
+	loadText.anchor.setTo(0.5, 0.5);
+	loadText.text = '铁岭高中三年十二班午间音乐系统';
+	var loadText1 = game.add.text(game.world.centerX, game.world.centerY + 150, '', {
+									  fontSize: '30px',
+									  fill: 'white'
+								  });
+	loadText1.anchor.setTo(0.5, 0.5);
+	loadText1.text = '获取网易云音乐资源中。。。';
+	var loadText1 = game.add.text(game.world.centerX, game.world.centerY + 200, '', {
+									  fontSize: '30px',
+									  fill: 'white'
+								  });
+	loadText1.anchor.setTo(0.5, 0.5);
+	loadText1.text = '本软件使用Phaser2开发';
+	var progressText = game.add.text(game.world.centerX, game.world.centerY, '0%', {
+										 fontSize: '60px',
+										 fill: 'white'
+									 });
+	progressText.anchor.setTo(0.5, 0.5);
+	//let deadLine = false;
+	game.load.onFileComplete.add(function (progress) {
+          progressText.text = progress + '%';
+          if (progress == 100) {
+            progressText.text = '加载完毕';
+            
+          }
+		  
+        });
+		
+		var dateJSON = game.cache.getJSON('date');
+		var dataJSON = game.cache.getJSON('data');
+		var saveJSON = game.cache.getJSON('save');
+		//var testJSON = game.cache.getJSON('test');
+	var rn=0;
+		var has = false;
+		var date=new Date();
+		//alert(date.getDate());
+		try{
+		for(rn = 0;rn < dateJSON.length;rn ++){
+			if(parseInt( dateJSON[rn].split('-')[0]) === date.getMonth() + 1 && parseInt( dateJSON[rn].split('-')[1]) === date.getDate()){
+				has = true;
+				break;
+			}
+		}
+		
+		for(let g=0;g<saveJSON[rn].length;g++){
+			if(dataJSON[saveJSON[rn][g]].wy){
+				//alert("");
+				game.load.json('test'+g, 'https://api.imjad.cn/cloudmusic/?type=song&id='+dataJSON[saveJSON[rn][g]].wyid);
+			}
+		}
+		}catch(e){
+			alert(e.message);
+		}
+	};
     this.create = function() {
 		    //var aa = [1,2,3,4,5,6,7,8,9,10]
-    
+   // window.open(getWY());
         var gui,win;
 		if(typeof require !== "undefined"){
 		gui = require('nw.gui');
@@ -266,6 +353,7 @@ game.States.menu = function() {
         version.left = game.width / 2 - version.width / 2;
         
 		var dateJSON = game.cache.getJSON('date');
+		
 		var dataJSON = game.cache.getJSON('data');
 		var saveJSON = game.cache.getJSON('save');
 		//function s(a,b){ return Math.random()>0.5 ? 1:-1;}
@@ -300,9 +388,14 @@ game.States.menu = function() {
 		to[g].left = game.width / 2 - to[g].width / 2;
 		to[g].b = game.add.button(to[g].left, to[g].top, 'star', function(){
 			if(dataJSON[saveJSON[rn][this.g]].url.charAt(0) !== '0'){
-				
+				if(dataJSON[saveJSON[rn][this.g]].wy){
+					var testJSON = game.cache.getJSON('test'+this.g);
+					window.open(excludeSpecial(testJSON.data[0].url));
+				}
 			    
-				window.open(dataJSON[saveJSON[rn][this.g]].url);
+				else window.open(dataJSON[saveJSON[rn][this.g]].url);
+				//window.open(getWY());
+				//document.write(excludeSpecial(this.testJSON.data[0].url));
 				
 				}else{
 					to[this.g].fill = 'red';
