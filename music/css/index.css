@@ -1,0 +1,10 @@
+@charset 'utf-8';
+@font-face{
+            font-family: 'fzse';
+            src : url('fzse.ttf');
+        }
+p {
+            font-family: fzse;
+			font-size:0px;
+        }
+body{ overflow: hidden; }
