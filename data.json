@@ -210,12 +210,12 @@
 			},
 			{
 				"id": 42,
-				"name": "青鸟",
+				"name": "青鸟","wy":true,"wyid":167899,
 				"url": "0"
 			},
 			{
 				"id": 43,
-				"name": "Rise",
+				"name": "Rise","wy":true,"wyid":1313107065,
 				"url": "http://music.163.com/song/media/outer/url?id=1313107065.mp3"
 			},
 			{
