@@ -198,7 +198,7 @@ game.States.preload = function(){
 		mn.width = 346;
 		mn.height = 346;
 		this.mn = mn;
-        var version = game.add.text(0, 80, '随机抽取音乐', {
+        var version = game.add.text(0, 80, '随机抽取音乐（有效音乐剩余1首）', {
             fill: 'white',
             fontSize: '31px'
         });
