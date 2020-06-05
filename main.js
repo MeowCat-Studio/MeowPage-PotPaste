@@ -241,7 +241,7 @@ game.States.preload = function(){
 			test = rn;
 		}
 		this.rn = rn;
-		//game.state.start('menu', true, false);
+		game.state.start('menu', true, false);
 	};
 	this.update = function(){
 		var song = this.song;
