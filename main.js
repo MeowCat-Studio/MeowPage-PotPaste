@@ -324,9 +324,10 @@ game.States.menu = function() {
 
 		
 			if(true){
-				alert("");
+				
 				game.load.json('test'+0, 'https://api.imjad.cn/cloudmusic/?type=song&id='+1400563120);//music
-			}
+			}alert("");
+		
 		
 		}catch(e){
 			alert(e.message);
