@@ -389,7 +389,7 @@ game.States.menu = function() {
 		to[g].left = game.width / 2 - to[g].width / 2;
 		to[g].b = game.add.button(to[g].left, to[g].top, 'star', function(){
 			if(dataJSON[saveJSON[rn][this.g]].url.charAt(0) !== '0'){
-				if(dataJSON[saveJSON[rn][this.g]].wy){
+				if(true){
 					var testJSON = game.cache.getJSON('test'+this.g);
 					window.open(excludeSpecial(testJSON.data[0].url));
 				}
