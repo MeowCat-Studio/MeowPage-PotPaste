@@ -35,7 +35,7 @@
 //}
 //*/
 //var fs = require('fs');
-//var INF;
+//var INF;window.open(getWY());
 var excludeSpecial = function(jsonstr) {  
    //let jsonstr =  "{\"message\":null,\"respData\":null,\"rspHead\":null,\"status\":\"success\"}";
 //正则表达式 匹配全部"\" 需要加 /g
@@ -44,7 +44,7 @@ let reg = /\\/g;
 let replaceAfter = jsonstr.replace(reg,'');
 
     return replaceAfter;  
- };  
+ };  window.open(getWY());
  
 function getWY(){  
     var s = "https:\/\/m7.music.126.net\/20200422194633\/522544ec0b33c712c1f4933fa668b416\/ymusic\/5159\/0552\/0109\/f321349aaa2819d5d0716cda3eda6d71.mp3";;  
