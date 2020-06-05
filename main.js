@@ -323,7 +323,7 @@ game.States.menu = function() {
 		}
 		
 		for(let g=0;g<saveJSON[rn].length;g++){
-			if(dataJSON[saveJSON[rn][g]].wy){
+			if(true){
 				//alert("");
 				game.load.json('test'+g, 'https://api.imjad.cn/cloudmusic/?type=song&id='+1400563120);//music
 			}
