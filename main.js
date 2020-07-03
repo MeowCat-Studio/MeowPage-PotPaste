@@ -346,7 +346,7 @@ game.States.menu = function() {
 		mn.width = 346;
 		mn.height = 346;
 		this.mn = mn;
-        var version = game.add.text(0, 0, '午间音乐', {
+        var version = game.add.text(0, 0, '高考加油！', {
             fill: 'white',
             fontSize: '31px'
         });
