@@ -229,12 +229,7 @@ game.States.preload = function(){
 		var has = false;
 		var date=new Date();
 		//alert(date.getDate());
-		for(rn = 0;rn < dateJSON.length;rn ++){
-			if(parseInt( dateJSON[rn].split('-')[0]) === date.getMonth() + 1 && parseInt( dateJSON[rn].split('-')[1]) === date.getDate()){
-				has = true;
-				break;
-			}
-		}
+		
 		if(has === false){
 			rn = rand(0,saveJSON.length - 1);
 			
