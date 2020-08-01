@@ -181,6 +181,7 @@ game.States.preload = function(){
         win = gui.Window.get();
 		win.enterFullscreen();	
 		}else{fullScreen();}
+		
 		 var bg = game.add.sprite(0, 0, 'menu');
 		var mn = game.add.sprite(307 + 346/2, 115 + 346/2, 'moon');
 		var dateJSON = game.cache.getJSON('date');
@@ -236,7 +237,8 @@ game.States.preload = function(){
 			test = rn;
 		}
 		this.rn = rn;
-		//game.state.start('menu', true, false);
+		
+		game.state.start('menu', true, false);
 	};
 	this.update = function(){
 		var song = this.song;
