@@ -183,7 +183,7 @@ window.onload = function () {
         APP.now = 0;
         setInterval(function () {
             updatePoints();
-        }, 1000);
+        }, 2000);
         for (let i = 0; i < set.length; i++) {
             let set2 = APP.nearPoints.set[i];
             let markerSet = [];
@@ -253,9 +253,10 @@ window.onload = function () {
         
         if (map.getZoom() <= 6 && APP.now + 1 < lables.length && APP.start) {
             //map.addOverlay(lables[APP.now]);
-            APP.now++;
+            
             let set2 = APP.nearPoints.set[APP.now];
             map.openInfoWindow(lables[APP.now], set2[set2.length - 1].point);
+            APP.now ++;
         }
         if(!(APP.now + 1 < lables.length && APP.start)){
             APP.now = 0;
