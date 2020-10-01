@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>适配多人联机的mod</title>
+</head>
+<body>
+    <h1>适配多人联机的mod</h1>
+
+<h5>声明（Декларация）</h5>
+
+<p>为了声明您的mod支持多人游戏，您需要在 <code>launcher.js</code>中的<code>Launch(...)</code>之前调用<code>ConfigureMultiplayer(configuration)</code>方法。调用此方法时，您可以指定模组名称和模组的版本参数，这些参数将用于识别网络游戏中的mod。如果未指定任何参数，则将从<code>mod.info</code>获取。此外，如果存在<code>isClientOnly: true</code>参数，则该mod将被声明为纯粹的客户端，客户端mod不应影响整个世界，并且在连接服务器时也不会与服务器同步（例如：MiniMap，Recipe Viewer，WAILA）。</p>
+
+<p><code>
+ConfigureMultiplayer({
+    name: &quot;readable unique name&quot;, //mod的唯一网络名称
+    version: &quot;version&quot;, // mod的版本
+    isClientOnly: true/false // 是否为存粹的客户端模组
+});
+</code></p>
+
+<h5>多人模组的基础概念（Общие понятия）</h5>
+
+<p>为了使mod在多人游戏中正常工作，mod代码必须分为客户端和服务端两部分，除了网络数据包和网络实体的事件外，它们不会以任何方式相互交互。这意味着mod的客户端无法使用服务端的变量，函数等，反之亦然。</p>
+
+<p>服务端应负责所有逻辑并与世界配合工作，而客户端则应处理来自服务器的数据并向服务器发送自定义事件来负责玩家可视的部分。</p>
+
+<p>为了实现多人联机，IC提供的API和您使用的库必须已经适配多人联机。</p>
+
+<p>如果您进入您自己的世界（即您为主机），则服务端和与其连接的客户端将在同一设备上启动。连接到他人的世界时（即您非主机），将在您的设备上启动客户端，并连接到主机上运行的服务器。</p>
+
+<h5>网络数据包传输与处理（Передача и обработка сетевых пакетов）</h5>
+
+<p>基本的网络功能基于从客户端到服务器或服务器到客户端的命名数据包的传输。 要接受具有特定名称的服务器或客户端的数据包，您可以注册一个事件，该事件将在每次使用相应名称的数据包到达时被触发。</p>
+
+<p><code></code>`
+// 数据包到达客户端时将触发该事件 testMod.serverMessage
+Network.addClientPacket(&quot;testMod.serverMessage&quot;, function(packetData) {
+    // 数据包的形式 {sender: ..., text: ...}
+    Game.message(&quot;[&quot; + packetData.sender + &quot;] &quot; + packetData.text);
+});</p>
+
+<p>// 向所有玩家发送数据的函数
+function sendMessageToAll(sender, text) {
+    // 发送数据给所有客户端
+    Network.sendToAllClients(&quot;testMod.serverMessage&quot;, {
+        sender: sender,
+        text: text
+    });
+}
+<code>
+同样，您可以将数据包从客户端发送到服务器。
+</code>
+// 服务器接收到来自客户端的名为testMod.clientMessage的事件
+Network.addServerPacket(&quot;testMod.clientMessage&quot;, function(client, data)) {
+    // 向发件人发送消息
+    sendMessageToAll(client.getPlayerUid(), data.text);
+});</p>
+
+<p>// 客户端上的函数，将消息发送到服务器，然后服务器将该消息发送到所有玩家
+function sendMessageFromClient(message) {
+    // 从客户端向服务器发送数据包
+    Network.sendToServer(&quot;testMod.clientMessage&quot;, {text: message});
+}
+<code></code>`</p>
+
+<p>在最后一个示例中，服务器在接收到数据包时同时接收到client参数，它可以用来获取玩家实体(<code>client.getPlayerUid()</code>)。 此外，它还允许您将数据包发送到特定客户端，而不是一次向所有客户端发送数据包。 要通过playerUid获得客户端，请使用<code>Network.getClientForPlayer(playerUid)</code>。</p>
+
+<p><code>
+// 注册木棍的使用函数
+Item.registerUseFunctionForID(280, function(coords, item, block, player) {
+    // 获取使用木棍的玩家的客户端接口
+    var client = Network.getClientForPlayer(player);
+    // 检查客户端是否存在
+    if (client != null) {
+        // 向该客户端发送数据
+        client.send(&quot;testMod.serverMessage&quot;, {
+            sender: &quot;server debug&quot;, // 发送方 &quot;server debug&quot;
+            text: &quot;you just used stick!&quot; // 只能是文本
+        });
+    }
+});
+</code></p>
+
+<h5>转换方块和物品的ID</h5>
+
+<p>（注：本文中“ID”一词若无标注均指数字ID）
+相同字符串ID的方块或物品的数字ID在客户端和服务器上可能会有所不同。 Inner Core会自动同步数字ID。 但是，如果使用数据包以数字形式传输它们，则它们将可能对应不同的方块或物品，并且必须手动进行转换。</p>
+
+<p>由于有许多客户端，并且只有一台服务器，因此转换发生在客户端，为此有函数<code>Network.serverToLocalId(id)</code> 和 <code>Network.localToServerId(id)</code>,将服务器ID与客户端ID互相转换。</p>
+
+<p>一个例子：
+<code></code>`
+// 从服务器传到客户端的数据包，其中包含有关物品的信息（例子中我们仅传输ID和data）
+Network.addClientPacket(&quot;testMod.useItemInfo&quot;, function() {
+    // 我们将打印以下信息：首先是服务器发送给我们的ID，然后是该物品在客户端上具有的ID，为确认这与客户端上的物品相同，我们将通过客户端ID获得其名称
+    var localId = Network.serverToLocalId(packetData.id);
+    Game.message(&quot;you just used item: server=&quot; + packetData.id + &quot; client=&quot; + localId + &quot; name=&quot; + Item.getName(localId, packetData.data));
+});</p>
+
+<p>// 物品被使用的服务器事件
+Callback.addCallback(&quot;ItemUse&quot;, function(coords, item, block, isExternal, player) {
+    var client = Network.getClientForPlayer(player);
+    if (client != null) {
+        // 发送包含物品信息的数据包，由于该事件是基于服务器的，因此这将是该物品的服务器ID
+        client.send(&quot;testMod.useItemInfo&quot;, {id: item.id, data: item.data});
+    }
+});
+<code></code>`</p>
+
+<p>为了在实践中测试此示例，您需要两个设备，因为在同一设备上运行的一对客户端和服务器将具有相同的ID。 要在两个设备上强制使用不同的ID，您可以尝试更改innercore/mods/.staticid文件。</p>
+</body>
+</html>
